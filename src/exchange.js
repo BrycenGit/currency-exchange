@@ -15,8 +15,8 @@ export default class CurrencyExchange {
   }
 
   doMath(amountToExchange, response, toExchange) {
-    amountToExchange * response.conversion_rates[toExchange]
-    return;
+    let amount =amountToExchange * response.conversion_rates[toExchange]
+    return amount;
   }
 
 

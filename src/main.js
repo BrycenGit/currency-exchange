@@ -25,12 +25,10 @@ $(document).ready(function() {
           $('.show-error').text('please use')
           console.log(response);
         } 
-        // console.log(response);
-        // showMath(amountToExchange, response, currencyToExchange);
-        let answer = CurrencyExchange.doMath(amountToExchange, response, currencyToExchange);
-        $('.show-exchange').html(`your USD is worth ${answer}!`)
+
+
       })
-      
+
   })
 })
 
