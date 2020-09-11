@@ -18,6 +18,8 @@ $(document).ready(function() {
           $('.show-answer').text(response)
         } else if (!response.conversion_rates[currencyToExchange]) {
           $('.show-answer').html(`Error! Please refer to our list of suppported currencies: <a href='https://www.exchangerate-api.com/docs/supported-currencies'>Currencies</a>`)
+          let object = response.conversion_rates;
+          console.log(Object.keys(object))
         } else {
         showMath(amountToExchange, response, currencyToExchange);
         console.log(response)
