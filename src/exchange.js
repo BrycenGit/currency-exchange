@@ -3,7 +3,6 @@ export default class CurrencyExchange {
     return fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD`)
     .then(function(response) {
       if (!response.ok) {
-        console.log(response)
         throw Error(response.statusText);
       }
       return response.json();
@@ -13,11 +12,4 @@ export default class CurrencyExchange {
       return error;
     })
   }
-
-  doMath(amountToExchange, response, toExchange) {
-    let amount =amountToExchange * response.conversion_rates[toExchange]
-    return amount;
-  }
-
-
 }
