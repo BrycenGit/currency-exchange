@@ -4,8 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/styles.css";
 import CurrencyExchange from "./exchange.js"
 
-function showMath(baseCurrency,amountToExchange, response, toExchange) {
-  $('.show-exchange').html(`your ${baseCurrency} is worth ${amountToExchange * response.conversion_rates[toExchange]}`)
+function showMath(amountToExchange, response, toExchange) {
+  $('.show-exchange').html(`your USD is worth ${amountToExchange * response.conversion_rates[toExchange]} ${toExchange}`)
   console.log(response.conversion_rates[toExchange]);
 }
 
@@ -13,21 +13,20 @@ function showMath(baseCurrency,amountToExchange, response, toExchange) {
 
 $(document).ready(function() {
   $('#exchange-me').click(function() {
-    let baseCurrency = $('#currency').val().toUpperCase();
     let amountToExchange = $('#dollars').val();
     let currencyToExchange = $('#to-exchange').val().toUpperCase();
 
-    CurrencyExchange.getCurrency(baseCurrency)
+    CurrencyExchange.getCurrency()
       .then(function(response) {
         if (response == 'TypeError: Failed to fetch') {
-          alert(response)
+          $('.show-error').text(response)
           console.log(response)
         } else if (response['error-type'] == 'base-code-only-on-pro') {
-          alert('this version does not support that currency.')
+          $('.show-error').text('please use')
           console.log(response);
         } 
         console.log(response);
-        showMath(baseCurrency, amountToExchange, response, currencyToExchange);
+        showMath(amountToExchange, response, currencyToExchange);
       })
       
   })
