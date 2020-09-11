@@ -11,9 +11,18 @@ $(document).ready(function() {
     // clear field function
     CurrencyExchange.getCurrency(currency)
       .then(function(response) {
+        if (response == 'TypeError: Failed to fetch') {
+          alert('please input propper currency.')
+          console.log(response)
+        } else if (response['error-type'] == 'base-code-only-on-pro') {
+          alert('this version does not support that currency.')
+          console.log(response);
+        } 
         console.log(response);
-        
       })
       
   })
 })
+
+// TypeError: Failed to fetch
+// {result: "error", error-type: "base-code-only-on-pro"}
