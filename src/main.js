@@ -5,7 +5,7 @@ import "./css/styles.css";
 import CurrencyExchange from "./exchange.js"
 
 function showMath(amountToExchange, response, toExchange) {
-  $('.show-exchange').html(`your USD is worth ${amountToExchange * response.conversion_rates[toExchange]} ${toExchange}`)
+  $('.show-exchange').text(`your USD is worth ${amountToExchange * response.conversion_rates[toExchange]} ${toExchange}`)
   console.log(response.conversion_rates[toExchange]);
 }
 
@@ -19,18 +19,16 @@ $(document).ready(function() {
     CurrencyExchange.getCurrency()
       .then(function(response) {
         if (response == 'TypeError: Failed to fetch') {
-          $('.show-error').text(response)
+          $('.show-exchange').text(response)
           console.log(response)
-        } else if (response['error-type'] == 'base-code-only-on-pro') {
-          $('.show-error').text('please use')
+        } else if (!response.conversion_rates[currencyToExchange]) {
+          $('.show-exchange').html(`Error! Please refer to our list of suppported currencies: <a href='https://www.exchangerate-api.com/docs/supported-currencies'>Currencies</a>`)
           console.log(response);
-        } 
-        console.log(response);
+        } else {
         showMath(amountToExchange, response, currencyToExchange);
+
+        }
       })
       
   })
 })
-
-// TypeError: Failed to fetch
-// {result: "error", error-type: "base-code-only-on-pro"}
