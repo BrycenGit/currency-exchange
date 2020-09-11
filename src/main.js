@@ -28,7 +28,7 @@ $(document).ready(function() {
         if (response == 'TypeError: Failed to fetch') {
           $('.show-answer').text(response)
         } else if (!response.conversion_rates[currencyToExchange]) {
-          $('.show-answer').html(`Error! Please refer to our list of suppported currencies: <a href='https://www.exchangerate-api.com/docs/supported-currencies'>Currencies</a>`)
+          $('.show-answer').html(`Error! Please refer to our list of suppported currencies: <a href='https://www.exchangerate-api.com/docs/supported-currencies'>Currencies</a>, Or look below.`)
           let object = response.conversion_rates;0
           let array = Object.keys(object)
           displayCurrencies(array);
