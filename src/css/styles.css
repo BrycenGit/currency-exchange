@@ -1,0 +1,54 @@
+.show-answer {
+  margin-top: 20px;
+
+}
+
+/* .jumbotron {
+  margin-top: 20px;
+  justify-content: center;
+
+}
+
+.jumbotron::before {
+  content: '';
+  background-image: url('https://bit.ly/2ZxGsc2');
+  background-size: cover;
+  opacity: 0.5;
+  position: absolute;
+} */
+.hero {
+  position: relative; 
+  height: auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero::before {    
+    content: "";
+    background-image: url('https://bit.ly/2ZxGsc2');
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.75;
+}
+
+h1 {
+    position: relative;
+    color: #black;  
+    font-size: 100px;
+    line-height: 0.9;
+    text-align: center;
+}
+
+p {
+  position: relative;
+  color: #black;  
+  font-size: 50px;
+  line-height: 0.9;
+  text-align: center;
+  }
