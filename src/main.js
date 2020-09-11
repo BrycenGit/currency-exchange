@@ -4,10 +4,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/styles.css";
 import CurrencyExchange from "./exchange.js"
 
-// function showMath(amountToExchange, response, toExchange) {
-//   $('.show-exchange').html(`your USD is worth ${amountToExchange * response.conversion_rates[toExchange]} ${toExchange}`)
-//   console.log(response.conversion_rates[toExchange]);
-// }
+function showMath(amountToExchange, response, toExchange) {
+  $('.show-exchange').html(`your USD is worth ${amountToExchange * response.conversion_rates[toExchange]} ${toExchange}`)
+  console.log(response.conversion_rates[toExchange]);
+}
 
 
 
@@ -25,10 +25,10 @@ $(document).ready(function() {
           $('.show-error').text('please use')
           console.log(response);
         } 
-
-
+        console.log(response);
+        showMath(amountToExchange, response, currencyToExchange);
       })
-
+      
   })
 })
 
