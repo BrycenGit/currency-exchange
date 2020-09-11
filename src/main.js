@@ -16,22 +16,31 @@ $(document).ready(function() {
     let baseCurrency = $('#currency').val().toUpperCase();
     let amountToExchange = $('#dollars').val();
     let currencyToExchange = $('#to-exchange').val().toUpperCase();
-    // clear field function
-    CurrencyExchange.getCurrency(baseCurrency)
-      .then(function(response) {
-        if (response == 'TypeError: Failed to fetch') {
-          alert('please input propper currency.')
-          console.log(response)
-        } else if (response['error-type'] == 'base-code-only-on-pro') {
-          alert('this version does not support that currency.')
-          console.log(response);
-        } 
-        console.log(response);
-        showMath(baseCurrency, amountToExchange, response, currencyToExchange);
-      })
-      
+    let promise = CurrencyExchange.getCurrency(baseCurrency);
+    promise.then(function(response) {
+      const body = JSON.parse(response);
+      console.log(body);
+      showMath(baseCurrency, amountToExchange, body, currencyToExchange);
+    }, function(error) {
+      alert('hello')
+      $('.show-error').text(`there was an error: ${error}`)
+    })
+
   })
 })
 
 // TypeError: Failed to fetch
 // {result: "error", error-type: "base-code-only-on-pro"}
+    // CurrencyExchange.getCurrency(baseCurrency)
+    //   .then(function(response) {
+    //     if (response == 'TypeError: Failed to fetch') {
+    //       alert(response)
+    //       console.log(response)
+    //     } else if (response['error-type'] == 'base-code-only-on-pro') {
+    //       alert(response['error-type'])
+    //       console.log(response);
+    //     } 
+    //     console.log(response);
+    //     showMath(baseCurrency, amountToExchange, response, currencyToExchange);
+    //   })
+      

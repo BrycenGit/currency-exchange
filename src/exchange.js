@@ -1,20 +1,17 @@
 export default class CurrencyExchange {
   static getCurrency(baseCurrency) {
-    return fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/${baseCurrency}`)
-    .then(function(response) {
-      if (!response.ok) {
-        throw Error(response.statusText);
+    return new Promise(function(resolve, reject) {
+      let request = new XMLHttpRequest();
+      const url = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/${baseCurrency}`;
+      request.onload = function() {
+        if (this.status === 200) {
+          resolve(request.response)
+        } else {
+          reject(request.response)
+        }
       }
-      return response.json();
-    })
-    .catch(function(error) {
-      console.log(error);
-      return error;
+      request.open('get', url, true);
+      request.send();
     })
   }
-
-  // converter(baseCurrencyAmount, convertTo) {
-  //   baseCurrencyAmount * response.
-  // }
-
 }
