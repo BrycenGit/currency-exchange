@@ -4,12 +4,20 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/styles.css";
 import CurrencyExchange from "./exchange.js"
 
+function showMath(baseCurrency,amountToExchange, response, toExchange) {
+  $('.show-exchange').html(`your ${baseCurrency} is worth ${amountToExchange * response.conversion_rates[toExchange]}`)
+  console.log(response.conversion_rates[toExchange]);
+}
+
+
+
 $(document).ready(function() {
   $('#exchange-me').click(function() {
-    let currency = $('#currency').val();
+    let baseCurrency = $('#currency').val().toUpperCase();
     let amountToExchange = $('#dollars').val();
+    let currencyToExchange = $('#to-exchange').val().toUpperCase();
     // clear field function
-    CurrencyExchange.getCurrency(currency)
+    CurrencyExchange.getCurrency(baseCurrency)
       .then(function(response) {
         if (response == 'TypeError: Failed to fetch') {
           alert('please input propper currency.')
@@ -19,6 +27,7 @@ $(document).ready(function() {
           console.log(response);
         } 
         console.log(response);
+        showMath(baseCurrency, amountToExchange, response, currencyToExchange);
       })
       
   })

@@ -13,8 +13,8 @@ export default class CurrencyExchange {
     })
   }
 
-  converter(baseCurrencyAmount, convertTo) {
-    baseCurrencyAmount * response.
-  }
+  // converter(baseCurrencyAmount, convertTo) {
+  //   baseCurrencyAmount * response.
+  // }
 
 }
