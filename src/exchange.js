@@ -14,8 +14,10 @@ export default class CurrencyExchange {
     })
   }
 
-  // converter(baseCurrencyAmount, convertTo) {
-  //   baseCurrencyAmount * response.
-  // }
+  doMath(amountToExchange, response, toExchange) {
+    amountToExchange * response.conversion_rates[toExchange]
+    return;
+  }
+
 
 }

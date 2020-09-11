@@ -25,8 +25,9 @@ $(document).ready(function() {
           $('.show-error').text('please use')
           console.log(response);
         } 
-        console.log(response);
-        showMath(amountToExchange, response, currencyToExchange);
+        // console.log(response);
+        // showMath(amountToExchange, response, currencyToExchange);
+        let answer = CurrencyExchange
       })
       
   })
