@@ -19,24 +19,26 @@ function displayCurrencies(array) {
   $('.currency-list').html(html);
 }
 
+function displayElements(response, amountToExchange, currencyToExchange){
+  if (response == 'TypeError: Failed to fetch') {
+    $('.show-answer').text(response)
+  } else if (!response.conversion_rates[currencyToExchange]) {
+    $('.show-answer').html(`Error! Please refer to our list of suppported currencies: <a href='https://www.exchangerate-api.com/docs/supported-currencies'>Currencies</a>, Or look below.`)
+    let object = response.conversion_rates;0
+    let array = Object.keys(object)
+    displayCurrencies(array);
+  } else {
+  showMath(amountToExchange, response, currencyToExchange);
+  }
+}
+
 $(document).ready(function() {
   $('#exchange-me').click(function() {
     let amountToExchange = $('#dollars').val();
     let currencyToExchange = $('#to-exchange').val().toUpperCase();
     CurrencyExchange.getCurrency()
       .then(function(response) {
-        if (response == 'TypeError: Failed to fetch') {
-          $('.show-answer').text(response)
-        } else if (!response.conversion_rates[currencyToExchange]) {
-          $('.show-answer').html(`Error! Please refer to our list of suppported currencies: <a href='https://www.exchangerate-api.com/docs/supported-currencies'>Currencies</a>, Or look below.`)
-          let object = response.conversion_rates;0
-          let array = Object.keys(object)
-          displayCurrencies(array);
-          console.log(Object.keys(object))
-        } else {
-        showMath(amountToExchange, response, currencyToExchange);
-        console.log(response)
-        }
+        displayElements(response, amountToExchange, currencyToExchange)
       })
   })
 });
