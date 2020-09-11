@@ -9,10 +9,11 @@ $(document).ready(function() {
     let currency = $('#currency').val();
     let amountToExchange = $('#dollars').val();
     // clear field function
-    CurrencyExchange.getCurrency(currency);
+    CurrencyExchange.getCurrency(currency)
       .then(function(response) {
         console.log(response);
         
       })
+      
   })
 })
